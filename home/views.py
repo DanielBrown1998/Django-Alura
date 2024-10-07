@@ -4,6 +4,7 @@ def home(request):
     context = {
         'title': 'Home',
         'content': 'Welcome to the home',
+        'images': [f'imagem{c}' for c in range(6)],
     }
     return render(request, 'home/index.html', context=context)
 
