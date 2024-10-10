@@ -43,16 +43,16 @@
                     <div class="cards">
                         <h2 class="cards__titulo">Navegue pela galeria</h2>
                         <ul class="cards__lista">
-                            {% for image in images %}
+                            {% for item_id, item in content.items %}
                                 <li class="card">
                                     <a href={% url "home:imagem" %}>
                                         <img class="card__imagem" src= {% static "/assets/imagens/galeria/carina-nebula.png" %} alt="foto">
                                     </a>
                                     <span class="card__tag">Estrelas</span>
                                     <div class="card__info">
-                                        <p class="card__titulo">Nome da foto: {{image}}</p>
+                                        <p class="card__titulo">{{item.nome}}</p>
                                         <div class="card__texto">
-                                            <p class="card__descricao">Fonte/fotógrafo/satélite</p>
+                                            <p class="card__descricao">{{item.legenda}}</p>
                                             <span>
                                                 <img src={% static "/assets/ícones/1x/favorite_outline.png" %} alt="ícone de coração">
                                             </span>

@@ -3,14 +3,19 @@ from django.shortcuts import render
 def home(request):
     context = {
         'title': 'Home',
-        'content': 'Welcome to the home',
-        'images': [f'imagem{c}' for c in range(6)],
+        'content': {
+            1:{
+            'nome': 'Nebulosa da Carina',
+            'legenda': 'webbtelescope.org/NASA/James Webb'},
+            2:{
+            'nome': 'Galáxia NGC 1079',
+            'legenda': 'nasa.org/NASA/Hubble'},
+        }
     }
     return render(request, 'home/index.html', context=context)
 
 def image(request):
     context = {
         'title': 'Image',
-        'content': 'Welcome to the image',
     }
     return render(request, 'home/imagem.html', context=context)
