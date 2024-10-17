@@ -8,5 +8,5 @@ app_name = 'home'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('imagem/', views.image, name='imagem'),
+    path('imagem/<int:item_id>/', views.image, name='imagem'),
 ]

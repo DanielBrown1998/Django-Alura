@@ -10,8 +10,3 @@ class Fotografia(models.Model):
     def __str__(self):
         return f"fotografia: [nome={self.nome}]"
 
-
-nome='Nebulosa da Carina'
-legenda='webbtelescope.org/NASA/James Webb'
-descricao='A nebulosa da Carina é uma nuvem de poeira e gases que se localiza na constelação de Carina, a cerca de 6.500 anos-luz da Terra. A nebulosa é uma região de formação estelar, onde o gás e a poeira se condensam para formar estrelas. A nebulosa é conhecida por suas formas complexas e coloridas, que são criadas pela radiação das estrelas jovens que se formam dentro dela.'
-foto='carina-nebula.png'
