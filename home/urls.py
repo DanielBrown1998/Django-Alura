@@ -9,4 +9,5 @@ app_name = 'home'
 urlpatterns = [
     path('', views.home, name='home'),
     path('imagem/<int:item_id>/', views.image, name='imagem'),
+    path('tag/<str:categoria>/', views.tag, name='tag'),
 ]
