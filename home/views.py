@@ -3,7 +3,11 @@ from home.models import Fotografia
 
 def home(request):
 
-    fotografias = Fotografia.objects.all()
+    fotografias = Fotografia.objects.filter(
+        publicada=True
+    ).order_by(
+        "data_fotografia"
+    )
 
     context = {
         'title': 'Home',
