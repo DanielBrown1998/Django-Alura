@@ -27,4 +27,4 @@ class Fotografia(models.Model):
         default= datetime.datetime.now, null=True, blank=True)
 
     def __str__(self):
-        return f"fotografia: [nome={self.nome}]"
+        return self.nome
