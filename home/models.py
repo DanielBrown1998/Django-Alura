@@ -17,7 +17,9 @@ class Fotografia(models.Model):
         max_length=150, choices=OPCOES, default=""
         )
     descricao = models.TextField(null=False, blank=False)
-    foto = models.CharField(max_length=100, null=False, blank=False)
+    foto = models.ImageField(
+        upload_to=f"fotos/%Y/%m/%d/"
+    )
     publicada = models.BooleanField(
         default=False, null=False, blank=False
     )
