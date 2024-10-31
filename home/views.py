@@ -39,3 +39,19 @@ def tag(request, categoria):
     return render(
         request, 'home/index.html', context=context
     )
+
+def buscar(request):
+    if 'buscar' in request.GET:
+        info = str(request.GET.get('buscar')).strip()
+        if info:
+            resultado = Fotografia.objects.filter(nome__icontains=info)
+        else:
+            resultado = Fotografia.objects.all()
+    context ={
+        'title': 'Buscar',
+        'content': resultado, 
+    }
+
+
+
+    return render(request, 'home/buscar.html', context=context)
