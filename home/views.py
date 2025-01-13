@@ -25,7 +25,6 @@ def image(request, item_id):
     return render(request, 'home/imagem.html', context=context)
 
 def tag(request, categoria):
-
     
     TAG = Fotografia.objects.filter(
         categoria__icontains = categoria
@@ -52,7 +51,5 @@ def buscar(request):
         'title': 'Buscar',
         'content': resultado, 
     }
-
-
 
     return render(request, 'home/buscar.html', context=context)
