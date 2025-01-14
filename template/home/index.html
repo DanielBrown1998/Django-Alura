@@ -19,14 +19,7 @@
             </div>
         </header>
         <main class="principal">
-            <section class="menu-lateral">
-                <nav class="menu-lateral__navegacao">
-                    <a href="{% url "home:home" %}"><img src= {% static "/assets/ícones/1x/Home - ativo.png" %} alt="Home"> Home</a>
-                    <a href="#"><img src= {% static "/assets/ícones/1x/Mais vistas - inativo.png" %} alt="'Mais_Vistas"> Mais vistas</a>
-                    <a href="#"><img src= {% static "/assets/ícones/1x/Novas - inativo.png" %} alt="News"> Novas</a>
-                    <a href="#"><img src= {% static "/assets/ícones/1x/Surpreenda-me - inativo.png" %} alt="Surpreenda-me"> Surpreenda-me</a>
-                </nav>
-            </section>
+            {% include "home/partials/_menu.html" %}
             {% block content %}
             <section class="conteudo">
                 <section class="banner">
