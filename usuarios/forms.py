@@ -62,6 +62,11 @@ class CadastroForm(forms.Form):
                 'type': 'password',
             },
         ),
+        help_text= [
+            'A senha deve conter no mínimo 8 caracteres',
+            'A senha não pode ser muito comum',
+            'A senha não pode ser inteiramente numérica',
+        ]
     )
     confirmar_senha = forms.CharField(
         label="Confirmar Senha",
@@ -74,11 +79,15 @@ class CadastroForm(forms.Form):
                 'type': 'password',
             },
         ),
+        help_text= [
+            'Digite a mesma senha do campo anterior',
+        ]
     )
     def clean(self):
-        cleaned_data = super().clean()
+        cleaned_data = self.cleaned_data
         senha = cleaned_data.get('senha')
         confirmar_senha = cleaned_data.get('confirmar_senha')
         if senha != confirmar_senha:
-            raise forms.ValidationError('As senhas não conferem')
-        return cleaned_data
+            msg = forms.ValidationError('As senhas não conferem', code='invalid')
+            self.add_error('confirmar_senha', msg)
+        return super().clean()

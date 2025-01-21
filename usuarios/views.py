@@ -38,16 +38,12 @@ def cadastro(request):
         form = CadastroForm(request.POST)
         
         if form.is_valid():
-            if form['senha'].value() != form['confirmar_senha'].value():
-                error(request, "As senhas não conferem")
-                return redirect("usuarios:cadastro")
-
             nome = form['nome'].value()
             email = form['email'].value()
             senha = form['senha'].value()
             
             if User.objects.filter(username=nome).exists():
-                error(request, "Já existe um usuário com esse username")
+                error(request, "Usuário já cadastrado")
                 return redirect("usuarios:cadastro")
 
             usuario = User.objects.create_user(
@@ -59,7 +55,9 @@ def cadastro(request):
             success(request, "Cadastro criado com sucesso")
             return redirect("usuarios:login")
         else:
-            error(request, "Erro ao cadastrar")
+            for _, errors_field in form.errors.as_data().items():
+                for error_field in errors_field:
+                    error(request, f"{error_field.message}")
             return redirect("usuarios:cadastro")
 
     form = CadastroForm()

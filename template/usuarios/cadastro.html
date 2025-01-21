@@ -20,11 +20,6 @@
     <div class="pagina-inicial">
         <header class="cabecalho">
             <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
-            {% for message in messages %}
-                <div class="alert alert-primary">
-                    <p id="message" >{{message}}</p>
-                </div>
-            {% endfor %}
             <div class="cabecalho__busca">
                 <div class="busca__fundo">
                     <form action="" method="">
@@ -35,12 +30,22 @@
                     </form>
                 </div>
             </div>
+            
         </header>
+        {% if messages %}
+        <aside class="tags__lista">
+            {% for message in messages %}
+            <div class="alert alert-primary">
+                <p id="message" >{{message}}</p>
+            </div>
+            {% endfor %}
+        </aside>
+        {% endif %}
         <main class="principal">
             {% include 'home/partials/_menu.html' %}
-            {{message}}
 
             <section class="galeria" style="margin-left: 5em">
+                
                 <form action="{% url "usuarios:cadastro" %}" method="POST">
                     {% csrf_token %}
                     <div class="row">
@@ -48,6 +53,15 @@
                         <div class="col-12 col-lg-6" style="margin-bottom: 10px;">
                             <label for="{{field.id_for_label}}" style="color:#D9D9D9; margin-bottom: 5px;"><b>{{field.label}}</b></label>
                             {{field}}
+                            <ul class="list-unstyled">
+                                {% for help in field.help_text %}
+                                <li>
+                                    <small class="form-text text-muted">
+                                        {{help}}
+                                    </small>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         {% endfor %}
                         <div class="col-12 text-center">
