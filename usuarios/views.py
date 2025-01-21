@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from usuarios.forms import LoginForm, CadastroForm
 from django.contrib import auth
 from django.contrib.auth.models import User 
+from django.contrib.messages import success, error, warning, info
 
 # Create your views here.
 def login(request):
@@ -16,8 +17,12 @@ def login(request):
                 username=form["nome_login"].value(),
                 password=form["senha"].value()
             )
+            if user is None:
+                error(request, "Usuário ou senha inválidos")
+                return redirect("usuarios:login")
+                
             auth.login(request, user)
-            print("usuário logado")
+            success(request, "Usuário logado com sucesso")
             return redirect("home:home")
 
     form = LoginForm()
@@ -34,7 +39,7 @@ def cadastro(request):
         
         if form.is_valid():
             if form['senha'].value() != form['confirmar_senha'].value():
-                print("senha inválida")
+                error(request, "As senhas não conferem")
                 return redirect("usuarios:cadastro")
 
             nome = form['nome'].value()
@@ -42,7 +47,7 @@ def cadastro(request):
             senha = form['senha'].value()
             
             if User.objects.filter(username=nome).exists():
-                print("já existe um usuário com esse username")
+                error(request, "Já existe um usuário com esse username")
                 return redirect("usuarios:cadastro")
 
             usuario = User.objects.create_user(
@@ -51,7 +56,7 @@ def cadastro(request):
                 password=senha
             )
             usuario.save()
-            print("cadastro criado com sucesso")
+            success(request, "Cadastro criado com sucesso")
             return redirect("usuarios:login")
 
     form = CadastroForm()

@@ -9,6 +9,7 @@ class LoginForm(forms.Form):
             attrs={
                 'placeholder': 'Digite seu nome de login',
                 'class': 'form-control',
+                'autocomplete': 'off'
             },
         ),
     )
@@ -20,6 +21,7 @@ class LoginForm(forms.Form):
             attrs={
                 'placeholder': 'Digite sua senha',
                 'class': 'form-control',
+                'type': 'password',
 
             },
         ),
@@ -34,6 +36,7 @@ class CadastroForm(forms.Form):
             attrs={
                 'placeholder': 'Digite seu nome',
                 'class': 'form-control',
+                'autocomplete': 'off'
             },
         ),
     )
@@ -44,6 +47,7 @@ class CadastroForm(forms.Form):
             attrs={
                 'placeholder': 'Digite seu email',
                 'class': 'form-control',
+                'autocomplete': 'off'
             },
         ),
     )
@@ -55,6 +59,7 @@ class CadastroForm(forms.Form):
             attrs={
                 'placeholder': 'Digite sua senha',
                 'class': 'form-control',
+                'type': 'password',
             },
         ),
     )
@@ -66,6 +71,7 @@ class CadastroForm(forms.Form):
             attrs={
                 'placeholder': 'Confirme sua senha',
                 'class': 'form-control',
+                'type': 'password',
             },
         ),
     )
