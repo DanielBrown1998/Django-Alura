@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from usuarios.forms import LoginForm, CadastroForm
 from django.contrib import auth
 from django.contrib.auth.models import User 
-from django.contrib.messages import success, error, warning, info
+from django.contrib.messages import success, error
 
 # Create your views here.
 def login(request):
@@ -20,7 +20,7 @@ def login(request):
             if user is None:
                 error(request, "Usuário ou senha inválidos")
                 return redirect("usuarios:login")
-                
+
             auth.login(request, user)
             success(request, "Usuário logado com sucesso")
             return redirect("home:home")
@@ -58,6 +58,9 @@ def cadastro(request):
             usuario.save()
             success(request, "Cadastro criado com sucesso")
             return redirect("usuarios:login")
+        else:
+            error(request, "Erro ao cadastrar")
+            return redirect("usuarios:cadastro")
 
     form = CadastroForm()
     context = {
