@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from usuarios.forms import LoginForm, CadastroForm
 from django.contrib import auth
+from django.contrib.auth import get_user
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 from django.contrib.messages import success, error
 
@@ -65,3 +67,9 @@ def cadastro(request):
         'form': form
     }
     return render(request, 'usuarios/cadastro.html', context)
+
+def logout(request):
+    user = get_user(request)
+    auth.logout(request)
+    success(request, f'{user.username} saiu!')
+    return redirect('usuarios:login')
