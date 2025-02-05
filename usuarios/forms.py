@@ -39,6 +39,7 @@ class CadastroForm(forms.Form):
                 'autocomplete': 'off'
             },
         ),
+        error_messages=[],
     )
     email = forms.EmailField(
         label="Email",
@@ -50,6 +51,7 @@ class CadastroForm(forms.Form):
                 'autocomplete': 'off'
             },
         ),
+        error_messages=[],
     )
     senha = forms.CharField(
         label="Senha",
@@ -66,7 +68,8 @@ class CadastroForm(forms.Form):
             'A senha deve conter no mínimo 8 caracteres',
             'A senha não pode ser muito comum',
             'A senha não pode ser inteiramente numérica',
-        ]
+        ],
+        error_messages=[],
     )
     confirmar_senha = forms.CharField(
         label="Confirmar Senha",
@@ -81,8 +84,23 @@ class CadastroForm(forms.Form):
         ),
         help_text= [
             'Digite a mesma senha do campo anterior',
-        ]
+        ],
+        error_messages=[],
     )
+
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        if not nome:
+            msg = forms.ValidationError('Nome é um campo obrigatório', code='invalid')
+            self.add_error('nome', msg)
+        if " " in nome.strip():
+            msg = forms.ValidationError('Nome não pode conter espaços', code='invalid')
+            self.add_error('nome', msg)
+        if len(nome) < 3:
+            msg = forms.ValidationError('Nome muito curto', code='invalid')
+            self.add_error('nome', msg)
+        return nome
+
     def clean(self):
         cleaned_data = self.cleaned_data
         senha = cleaned_data.get('senha')

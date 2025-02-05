@@ -35,7 +35,7 @@
         {% if messages %}
         <aside class="tags__lista">
             {% for message in messages %}
-            <div class="alert alert-primary">
+            <div class="alert alert-danger">
                 <p id="message" >{{message}}</p>
             </div>
             {% endfor %}
@@ -49,7 +49,7 @@
                 <form action="{% url "usuarios:cadastro" %}" method="POST">
                     {% csrf_token %}
                     <div class="row">
-                        {% for field in form %}
+                        {% for field in form.visible_fields %}
                         <div class="col-12 col-lg-6" style="margin-bottom: 10px;">
                             <label for="{{field.id_for_label}}" style="color:#D9D9D9; margin-bottom: 5px;"><b>{{field.label}}</b></label>
                             {{field}}
@@ -64,6 +64,7 @@
                             </ul>
                         </div>
                         {% endfor %}
+                        
                         <div class="col-12 text-center">
                             <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Criar sua conta</button>
                         </div>
