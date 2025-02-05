@@ -19,6 +19,6 @@ class FotografiaAdmin(admin.ModelAdmin):
     
     list_editable = ["publicada",]
 
-    list_filter = ["categoria", ]
+    list_filter = ["categoria","usuario",]
     list_per_page = 10
     ordering = ['nome',]

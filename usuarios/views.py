@@ -68,6 +68,7 @@ def cadastro(request):
     }
     return render(request, 'usuarios/cadastro.html', context)
 
+@login_required(login_url='usuarios:login')
 def logout(request):
     user = get_user(request)
     auth.logout(request)

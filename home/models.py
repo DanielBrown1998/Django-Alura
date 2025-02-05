@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Fotografia(models.Model):
@@ -25,6 +25,14 @@ class Fotografia(models.Model):
     )
     data_fotografia = models.DateTimeField(
         default= datetime.datetime.now, null=True, blank=True)
+    usuario = models.ForeignKey(
+        User,
+        on_delete = models.SET_NULL,
+        null=True,
+        blank=False,
+        related_name='user',
+    )
+
 
     def __str__(self):
         return self.nome
