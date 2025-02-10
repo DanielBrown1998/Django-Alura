@@ -29,7 +29,8 @@ def login(request):
 
     form = LoginForm()
     context = {
-        'form': form
+        'form': form,
+        'bootstrap': True,
     }
     return render(request, 'usuarios/login.html', context)
 
@@ -64,7 +65,8 @@ def cadastro(request):
 
     form = CadastroForm()
     context = {
-        'form': form
+        'form': form,
+        'bootstrap': True,
     }
     return render(request, 'usuarios/cadastro.html', context)
 

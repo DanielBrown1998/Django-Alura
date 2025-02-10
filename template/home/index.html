@@ -2,16 +2,12 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-{% include "home/partials/_head.html" %}
+{% include "partials/_head.html" %}
 <body>
     <div class="pagina-inicial">
         <header class="cabecalho">
             <img src={% static "/assets/logo/Logo(2).png" %} alt="Logo da Alura Space" />
-            {% for message in  messages%}
-                <div class="message message-primary">
-                    <p id="message" >{{message}}</p>
-                </div>
-            {% endfor %}
+            {% include "partials/_alerts.html" %}
             <div class="cabecalho__busca">
                 <div class="busca__fundo">
                     <form  class="busca__fundo" action="{% url "home:buscar" %}" method="GET">
@@ -24,7 +20,7 @@
             </div>
         </header>
         <main class="principal">
-            {% include "home/partials/_menu.html" %}
+            {% include "partials/_menu.html" %}
             {% block content %}
             <section class="conteudo">
                 <section class="banner">
@@ -85,6 +81,6 @@
             {% endblock content %}
         </main>
     </div>
-    {% include "home/partials/_footer.html" %}
+    {% include "partials/_footer.html" %}
 </body>
 </html>
