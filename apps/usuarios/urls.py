@@ -1,6 +1,6 @@
 from django.urls import path
 
-from usuarios import views
+from apps.usuarios import views
 
 app_name = 'usuarios'
 

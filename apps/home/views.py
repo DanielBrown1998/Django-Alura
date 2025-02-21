@@ -1,6 +1,6 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from home.models import Fotografia
+from apps.home.models import Fotografia
 
 @login_required(login_url='usuarios:login')
 def home(request):
