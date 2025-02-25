@@ -176,7 +176,6 @@ table {
 
 .card__texto {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -191,7 +190,6 @@ table {
 
 .galeria {
     display: flex;
-    width: 100%;
 }
 
 .imagem {
@@ -493,7 +491,7 @@ table {
 
 .form-control {
     display: block;
-    width: 100%;
+    width: 30vw;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
