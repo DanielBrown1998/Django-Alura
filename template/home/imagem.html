@@ -17,6 +17,18 @@
                         <p class="imagem__descricao">{{item.legenda}}</p>
                         <p class="imagem__texto">{{item.descricao}}</p>
                     </div>
+                    <div>
+                        <a href="{% url "home:editar-imagem" item_id %}">
+                            <button class="btn btn-success" style="padding: top 5px;" type="text">
+                                editar
+                            </button>
+                        </a>
+                        <a href="{% url "home:deletar-imagem" item_id %}">
+                            <button class="btn btn-danger" style="padding: top 5px;" type="text">
+                                deletar
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
