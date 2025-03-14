@@ -43,7 +43,7 @@ def tag(request, categoria):
     }
 
     return render(
-        request, 'home/index.html', context=context
+        request, 'home/tag.html', context=context
     )
 
 @login_required(login_url='usuarios:login')
@@ -95,7 +95,7 @@ def editar_imagem(request, id:int):
     }
 
     if request.method == "POST":
-        forms = FotografiaForm(request.POST, request.FILES, instance=Fotografia)
+        forms = FotografiaForm(request.POST, request.FILES, instance=fotografia)
         if forms.is_valid():
             forms.save()
             msg = 'Imagem editada com sucesso!'
@@ -109,4 +109,8 @@ def editar_imagem(request, id:int):
 
 @login_required(login_url='usuarios:login')
 def deletar_imagem(request, id:int):
+    obj = Fotografia.objects.get(pk=id)
+    obj.delete()
+    success(request, f"{obj.nome} removido com sucesso")
+
     return redirect("home:home")

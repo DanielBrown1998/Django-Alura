@@ -4,7 +4,7 @@
 
 
 <section class="galeria" style="margin-left: 5em">
-    <form action="{% url "home:nova_imagem" %}" method="POST" enctype="multpart/form-data">
+    <form action="{% url "home:nova-imagem" %}" method="POST" enctype="multpart/form-data">
         {% csrf_token %}
         <div class="row">
             {% for field in form.visible_fields %}
